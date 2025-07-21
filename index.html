@@ -2,53 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Akarshan Poudel</title>
   <style>
-    :root{color-scheme:light dark;--bg:#fafafa;--fg:#111;--accent:#0066ff}
-    @media (prefers-color-scheme:dark){
-      :root{--bg:#111;--fg:#fafafa}
+    :root{
+      --bg:#fafafa;
+      --fg:#111;
+      --accent:#0066ff;
+      --card:#fff;
+      --shadow:0 2px 8px rgba(0,0,0,.05);
+      --nav:#888;
     }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#111;
+        --fg:#fafafa;
+        --card:#1a1a1a;
+        --shadow:0 2px 8px rgba(0,0,0,.4);
+      }
+    }
+    body[data-theme="light"]{
+      --bg:#fafafa;
+      --fg:#111;
+      --card:#fff;
+    }
+    body[data-theme="dark"]{
+      --bg:#111;
+      --fg:#fafafa;
+      --card:#1a1a1a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       background:var(--bg);
       color:var(--fg);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      padding:2rem;
-      text-align:center;
-      line-height:1.6
+      transition:background .2s,color .2s;
+      scroll-behavior:smooth;
     }
+    header{
+      position:fixed;top:0;left:0;right:0;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.9rem 1.5rem;background:var(--card);box-shadow:var(--shadow);
+      z-index:10;
+    }
+    nav a{margin:0 .9rem;color:var(--nav);text-decoration:none;font-weight:600;font-size:.9rem}
+    nav a:hover{color:var(--accent)}
+    .theme-toggle{background:none;border:none;cursor:pointer;color:var(--nav)}
+    .theme-toggle:hover{color:var(--accent)}
+    section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6rem 1.5rem 2rem}
     h1{font-size:clamp(1.8rem,4vw,2.8rem);margin:.2em 0 .6em}
-    p{max-width:38ch;margin:0 auto 2em;font-size:clamp(.95rem,2vw,1.1rem)}
-    nav{display:flex;gap:2.2rem;flex-wrap:wrap}
-    a{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
-      letter-spacing:.03em;
-      position:relative;
-      transition:opacity .2s
+    p{max-width:38ch;margin:0 auto 2em;font-size:clamp(.95rem,2vw,1.1rem);text-align:center}
+    .links{display:flex;gap:2.2rem;flex-wrap:wrap;justify-content:center}
+    .icon{width:28px;height:28px;fill:var(--fg);transition:fill .2s}
+    .icon:hover{fill:var(--accent)}
+    @media (max-width:480px){
+      header{flex-direction:column;padding:.5rem}
+      nav a{margin:.25rem .5rem}
     }
-    a:hover{opacity:.7}
   </style>
 </head>
 <body>
-  <h1>Akarshan Poudel</h1>
-  <p>
-    Computer engineering student crafting innovative tech solutions across full-stack development,
-    machine learning, and cybersecurity—guided by a security-first mindset and sharpened leadership skills.
-  </p>
-
+<header>
   <nav>
-    <a href="https://linkedin.com/in/akarshanpoudel" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/akarshanpoudel" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://leetcode.com/akarshanpoudel" target="_blank" rel="noopener">LeetCode</a>
-    <a href="https://kaggle.com/akarshanpoudel" target="_blank" rel="noopener">Kaggle</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+  </button>
+</header>
+
+<!-- === HOME === -->
+<section id="home">
+  <h1>Akarshan Poudel</h1>
+  <p>Computer engineering student crafting innovative tech solutions across full-stack development, machine learning, and cybersecurity.</p>
+  <div class="links">
+    <a href="https://linkedin.com/in/akarshanpoudel" target="_blank" rel="noopener">
+      <svg class="icon" role="img" viewBox="0 0 24 24"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="https://github.com/akarshanpoudel" target="_blank" rel="noopener">
+      <svg class="icon" role="img" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+    <a href="https://leetcode.com/akarshanpoudel" target="_blank" rel="noopener">
+      <svg class="icon" role="img" viewBox="0 0 24 24"><title>LeetCode</title><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L9.35 4.78 2.552 11.58a1.473 1.473 0 0 0 0 2.084l11.6 11.6a1.473 1.473 0 0 0 2.084 0l11.6-11.6a1.473 1.473 0 0 0 0-2.084L15.13 4.78a1.374 1.374 0 0 0-.961-.438H13.483zm-.068 5.334a1.105 1.105 0 0 0-.773.319L6.49 12.32a1.105 1.105 0 0 0 0 1.562l6.152 6.152a1.105 1.105 0 0 0 1.562 0l6.152-6.152a1.105 1.105 0 0 0 0-1.562L14.32 5.653a1.105 1.105 0 0 0-.773-.319h-.968zM10.5 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+    </a>
+    <a href="https://kaggle.com/akarshanpoudel" target="_blank" rel="noopener">
+      <svg class="icon" role="img" viewBox="0 0 24 24"><title>Kaggle</title><path d="M18.825 13.61c.59.53.59 1.41 0 1.94l-6.95 6.24c-.59.53-1.54.53-2.13 0L2.9 15.55c-.59-.53-.59-1.41 0-1.94l6.95-6.24c.59-.53 1.54-.53 2.13 0l6.87 6.24zM12 1.294l8.53 7.676c.59.53.59 1.41 0 1.94L12 18.706l-8.53-7.796c-.59-.53-.59-1.41 0-1.94L12 1.294z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- === ABOUT === -->
+<section id="about">
+  <h1>About Me</h1>
+  <p>
+    I’m a computer engineering student passionate about building innovative tech solutions.
+    My toolkit spans Python &amp; PyTorch for ML, PyGame for games, and the MERN stack for responsive web apps.
+    A security-first mindset from cybersecurity training and leadership skills honed at the Aspire Institute round out my profile.
+  </p>
+</section>
+
+<!-- === CONTACT === -->
+<section id="contact">
+  <h1>Contact</h1>
+  <p>
+    Feel free to reach out—whether it’s a project idea, collaboration, or just a hello.
+  </p>
+  <div class="links">
+    <a href="mailto:akarshanpoudel@example.com">Email</a>
+  </div>
+</section>
+
+<script>
+  // Theme toggle
+  const toggle = document.querySelector('.theme-toggle');
+  const setTheme = t => { 
+    document.body.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+  };
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(stored || (prefersDark ? 'dark' : 'light'));
+  toggle.addEventListener('click', () => {
+    const current = document.body.getAttribute('data-theme');
+    setTheme(current === 'light' ? 'dark' : 'light');
+  });
+</script>
 </body>
 </html>
