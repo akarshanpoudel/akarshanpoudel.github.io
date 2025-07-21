@@ -3,111 +3,52 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Your Name – Portfolio</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
-
+  <title>Akarshan Poudel</title>
   <style>
-    :root {
-      --bg: #f5f7fa;
-      --text: #1a202c;
-      --accent: #0066ff;
-      --card: #ffffff;
-      --shadow: 0 4px 16px rgba(0,0,0,.05);
+    :root{color-scheme:light dark;--bg:#fafafa;--fg:#111;--accent:#0066ff}
+    @media (prefers-color-scheme:dark){
+      :root{--bg:#111;--fg:#fafafa}
     }
-    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      font-family:'Inter',sans-serif;
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
+      color:var(--fg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
       padding:2rem;
-    }
-    header{text-align:center;margin-bottom:2.5rem}
-    header img{
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      object-fit:cover;
-      border:4px solid var(--accent);
-      margin-bottom:1rem;
-    }
-    h1{font-size:2rem;margin-bottom:.25rem}
-    p{max-width:600px;margin:0 auto 1.5rem}
-    .grid{
-      display:grid;
-      gap:1.2rem;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      max-width:1000px;
-      margin:0 auto;
-    }
-    .card{
-      background:var(--card);
-      border-radius:12px;
-      padding:1.5rem 1.8rem;
-      box-shadow:var(--shadow);
-      transition:transform .2s;
-      text-decoration:none;
-      color:var(--text);
-    }
-    .card:hover{transform:translateY(-4px)}
-    .card h3{margin-bottom:.5rem}
-    .card .icon{
-      font-size:1.5rem;
-      margin-right:.5rem;
-      vertical-align:bottom;
-    }
-    footer{
-      margin-top:3rem;
       text-align:center;
-      font-size:.8rem;
-      color:#777;
+      line-height:1.6
     }
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);margin:.2em 0 .6em}
+    p{max-width:38ch;margin:0 auto 2em;font-size:clamp(.95rem,2vw,1.1rem)}
+    nav{display:flex;gap:2.2rem;flex-wrap:wrap}
+    a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.03em;
+      position:relative;
+      transition:opacity .2s
+    }
+    a:hover{opacity:.7}
   </style>
 </head>
-
 <body>
-  <header>
-    <!-- Replace with your image -->
-    <img src="https://via.placeholder.com/120" alt="Your Name"/>
-    <h1>Your Name</h1>
-    <p>Short tagline about yourself (e.g., Data Scientist • Full-Stack Developer • Problem Solver).</p>
-  </header>
+  <h1>Akarshan Poudel</h1>
+  <p>
+    Computer engineering student crafting innovative tech solutions across full-stack development,
+    machine learning, and cybersecurity—guided by a security-first mindset and sharpened leadership skills.
+  </p>
 
-  <main class="grid">
-    <!-- LinkedIn -->
-    <a class="card" href="https://linkedin.com/in/akarshanpoudel" target="_blank" rel="noopener">
-      <h3><span class="icon">in</span> LinkedIn</h3>
-      <p>Connect on LinkedIn for professional updates and networking.</p>
-    </a>
-
-    <!-- GitHub -->
-    <a class="card" href="https://github.com/akarshanpoudel" target="_blank" rel="noopener">
-      <h3><span class="icon">⚡</span> GitHub</h3>
-      <p>Open-source projects, scripts, and contributions.</p>
-    </a>
-
-    <!-- LeetCode -->
-    <a class="card" href="https://leetcode.com/Akarshan_Poudel" target="_blank" rel="noopener">
-      <h3><span class="icon">💡</span> LeetCode</h3>
-      <p>My problem-solving journey and stats.</p>
-    </a>
-
-    <!-- Kaggle -->
-    <a class="card" href="https://kaggle.com/YOUR_USERNAME" target="_blank" rel="noopener">
-      <h3><span class="icon">🏆</span> Kaggle</h3>
-      <p>Competitions, datasets, and notebooks.</p>
-    </a>
-  </main>
-
-  <footer>
-    © <span id="year">2024</span> Your Name • Built with ❤️ and no frameworks.
-  </footer>
-
-  <script>
-    // Auto-update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <nav>
+    <a href="https://linkedin.com/in/akarshanpoudel" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/akarshanpoudel" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://leetcode.com/akarshanpoudel" target="_blank" rel="noopener">LeetCode</a>
+    <a href="https://kaggle.com/akarshanpoudel" target="_blank" rel="noopener">Kaggle</a>
+  </nav>
 </body>
 </html>
