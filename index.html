@@ -42,7 +42,7 @@
   <div class="links">
     <a href="https://linkedin.com/in/akarshanpoudel" target="_blank"><i class="fa fa-linkedin social"></i></a>
     <a href="https://github.com/akarshanpoudel" target="_blank"><i class="fa fa-github social"></i></a>
-    <a href="https://leetcode.com/u/Akarshan_Poudel/" target="_blank"><i class="fa fa-code social"></i></a>
+    <a href="https://leetcode.com/u/Akarshan_Poudel" target="_blank"><i class="fa fa-code social"></i></a>
     <a href="https://kaggle.com/akarshanpoudel" target="_blank"><i class="fa fa-trophy social"></i></a>
   </div>
 </section>
@@ -56,10 +56,10 @@
 <!-- CONTACT -->
 <section id="contact">
   <h1>Contact</h1>
-  <p>Your information will only be used for the purpose stated.</p>
+  <p>Your information willnot be used for any other purposes.</p>
 
   <!-- CONTACT FORM -->
-  <form action="https://formspree.io/f/xblkgkrj" method="POST">
+  <form id="contactForm" action="https://formspree.io/f/xblkgkrj" method="POST">
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="email" name="_replyto" placeholder="Email Address" required>
     <textarea name="message" rows="4" placeholder="Your Message / Report" required></textarea>
@@ -70,14 +70,6 @@
 
   <!-- Thank-you notice -->
   <p id="thanks">Thanks! Your message has been sent.</p>
-
-  <!-- Social icons -->
-  <div class="social">
-    <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
-    <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
-    <a href="https://wa.me/9779748420894" target="_blank"><i class="fa fa-whatsapp"></i></a>
-    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
-  </div>
 </section>
 
 <script>
@@ -88,9 +80,12 @@
   };
 
   // Show thank-you after redirect
-  if (window.location.search.includes('sent=1')) {
-    document.getElementById('thanks').style.display = 'block';
-  }
+  window.onload = function() {
+    if (window.location.search.includes('sent=1')) {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+    }
+  };
 </script>
 </body>
 </html>
