@@ -18,11 +18,11 @@
     p{max-width:38ch;margin:0 auto 2em;line-height:1.6}
     .links{display:flex;gap:2rem;flex-wrap:wrap}
     .icon{width:28px;height:28px;fill:var(--fg)}
-    .icon:hover{fill:var(--accent)}
-    form{max-width:500px;width:100%}
-    input,textarea{width:100%;padding:.7rem;margin:.5rem 0;border:1px solid #ccc;border-radius:4px}
-    button[type=submit]{padding:.7rem 1.5rem;border:none;border-radius:4px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600}
     .social{font-size:2rem;display:flex;gap:1.5rem;margin-top:1.5rem}
+    form{max-width:500px;width:100%}
+    input,textarea{width:100%;padding:.7rem;margin:.5rem 0;border:1px solid #ccc;border-radius:4px;background:var(--card);color:var(--fg)}
+    button[type=submit]{padding:.7rem 1.5rem;border:none;border-radius:4px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600}
+    #thanks{display:none;color:var(--accent);margin-top:1rem}
   </style>
 </head>
 <body data-theme="light">
@@ -35,6 +35,7 @@
   <button class="theme" onclick="toggleTheme()">🌗</button>
 </header>
 
+<!-- HOME -->
 <section id="home">
   <h1>Akarshan Poudel</h1>
   <p>Computer engineering student crafting innovative tech solutions across full-stack development, machine learning, and cybersecurity.</p>
@@ -46,44 +47,50 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <h1>About</h1>
   <p>I’m a computer engineering student passionate about building innovative tech solutions. My toolkit spans Python & PyTorch for ML, PyGame for games, and the MERN stack for responsive web apps. A security-first mindset from cybersecurity training and leadership skills honed at the Aspire Institute round out my profile.</p>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <!-- inside <section id="contact"> … </section>, replace the existing <form> with: -->
-<form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-  <input type="text" name="name" placeholder="Full Name" required>
-  <input type="email" name="_replyto" placeholder="Email Address" required>
-  <textarea name="message" rows="4" placeholder="Your Message / Report" required></textarea>
-  <button type="submit">Send</button>
-  <p id="formMsg" style="margin:.5rem 0 0;color:var(--accent);display:none">Sent ✅</p>
-</form>
+  <h1>Contact</h1>
+  <p>Your information will only be used for the purpose stated.</p>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();                          // stop normal submit
-  const form = this;
-  fetch(form.action, {
-    method : form.method,
-    body   : new FormData(form),
-    headers: { Accept: 'application/json' }
-  })
-  .then(() => {
-    form.reset();                            // clear fields
-    document.getElementById('formMsg').style.display = 'block';
-    setTimeout(() => document.getElementById('formMsg').style.display = 'none', 4000);
-  })
-  .catch(() => alert('Error sending message. Please try again.'));
-});
+  <!-- CONTACT FORM -->
+  <form action="https://formspree.io/f/xblkgkrj" method="POST">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="_replyto" placeholder="Email Address" required>
+    <textarea name="message" rows="4" placeholder="Your Message / Report" required></textarea>
+    <input type="hidden" name="_next" value="https://akarshanpoudel.github.io/?sent=1">
+    <input type="hidden" name="_subject" value="New message from portfolio">
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Thank-you notice -->
+  <p id="thanks">Thanks! Your message has been sent.</p>
+
+  <!-- Social icons -->
+  <div class="social">
+    <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
+    <a href="https://wa.me/9779748420894" target="_blank"><i class="fa fa-whatsapp"></i></a>
+    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+  </div>
 </section>
 
 <script>
+  // Theme toggle
   const toggleTheme = () => {
     const body = document.body;
     body.setAttribute('data-theme', body.dataset.theme === 'light' ? 'dark' : 'light');
   };
+
+  // Show thank-you after redirect
+  if (window.location.search.includes('sent=1')) {
+    document.getElementById('thanks').style.display = 'block';
+  }
 </script>
 </body>
 </html>
