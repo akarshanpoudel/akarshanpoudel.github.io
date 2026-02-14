@@ -1136,72 +1136,81 @@
 
 <script>
   let audioCtx;
-  let oscillators = [];
-  let masterGain;
+  let source;
+  let gainNode;
+  let buffer;
   let isPlaying = false;
 
   const musicToggle = document.getElementById("musicToggle");
 
-  function initAudio() {
+  async function initAudio() {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0;
+      gainNode.connect(audioCtx.destination);
+
+      // Load your MP3 file (same folder as index.html)
+      const response = await fetch("copyright-free-inspirational-music.mp3");
+      const arrayBuffer = await response.arrayBuffer();
+      buffer = await audioCtx.decodeAudioData(arrayBuffer);
     }
+
     if (audioCtx.state === "suspended") {
-      audioCtx.resume();
+      await audioCtx.resume();
     }
   }
 
-  function startAmbientMusic() {
+  async function startMusic() {
     if (isPlaying) return;
 
-    initAudio();
+    await initAudio();
 
-    masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0;
-    masterGain.connect(audioCtx.destination);
+    source = audioCtx.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+    source.connect(gainNode);
+    source.start();
 
-    const frequencies = [130.81, 164.81, 196.0]; // C major drone
-
-    frequencies.forEach(freq => {
-      const osc = audioCtx.createOscillator();
-      osc.type = "sine";
-      osc.frequency.value = freq;
-      osc.connect(masterGain);
-      osc.start();
-      oscillators.push(osc);
-    });
-
-    // Gentle fade in
-    masterGain.gain.linearRampToValueAtTime(
-      0.05,
-      audioCtx.currentTime + 1.2
+    // Smooth fade in
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(
+      0.25,
+      audioCtx.currentTime + 2
     );
 
     isPlaying = true;
     musicToggle.classList.add("playing");
   }
 
-  function stopAmbientMusic() {
+  function stopMusic() {
     if (!isPlaying) return;
 
-    // Gentle fade out
-    masterGain.gain.linearRampToValueAtTime(
+    // Smooth fade out
+    gainNode.gain.linearRampToValueAtTime(
       0,
-      audioCtx.currentTime + 0.8
+      audioCtx.currentTime + 1
     );
 
     setTimeout(() => {
-      oscillators.forEach(o => o.stop());
-      oscillators = [];
+      source.stop();
+      source.disconnect();
+      source = null;
       isPlaying = false;
       musicToggle.classList.remove("playing");
-    }, 900);
+    }, 1100);
   }
 
   musicToggle.addEventListener("click", () => {
-    isPlaying ? stopAmbientMusic() : startAmbientMusic();
+    isPlaying ? stopMusic() : startMusic();
   });
+
+  // Auto-start on load (browser-safe)
+  window.addEventListener("load", startMusic);
+  window.addEventListener("click", initAudio, { once: true });
 </script>
+
 
   
 
