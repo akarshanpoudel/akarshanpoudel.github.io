@@ -102,7 +102,10 @@
       background: var(--nav-bg);
       box-shadow: 0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.05);
     }
-    [data-theme="light"] .nav-logo img { filter: none; }
+    [data-theme="light"] .nav-logo img {
+      filter: invert(1) hue-rotate(180deg);
+      mix-blend-mode: normal;
+    }
     [data-theme="light"] .btn-primary {
       background: var(--accent);
       color: #fff;
@@ -176,6 +179,9 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-logo img {
+      mix-blend-mode: screen;
+    }
     .nav-logo {
       font-family: var(--font-display);
       font-size: 1.1rem;
@@ -461,12 +467,12 @@
       right: 5rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 200px;
-      height: 200px;
+      width: 340px;
+      height: 340px;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid rgba(0,229,255,0.25);
-      box-shadow: 0 0 40px rgba(0,229,255,0.1), 0 0 0 8px rgba(0,229,255,0.04);
+      box-shadow: 0 0 60px rgba(0,229,255,0.1), 0 0 0 12px rgba(0,229,255,0.04);
       animation: fadeUp 1s 0.3s ease both;
       z-index: 1;
     }
@@ -1128,7 +1134,7 @@
           I'm a <strong>computer engineering student</strong> passionate about building systems that matter. My work spans <strong>machine learning with Python & PyTorch</strong>, interactive experiences with PyGame, and scalable web apps with the <strong>MERN stack</strong>.
         </p>
         <p class="about-text">
-          Trained in <strong>cybersecurity</strong>, I approach every build with a security-first mindset. Beyond code, I've developed leadership skills through the Aspire Institute — I care as much about shipping as I do about collaborating.
+          Trained in <strong>cybersecurity</strong>, I approach every build with a security-first mindset. Beyond code, I've developed leadership skills through the Aspire Institute , I care as much about shipping as I do about collaborating.
         </p>
 
         <div class="skill-grid">
