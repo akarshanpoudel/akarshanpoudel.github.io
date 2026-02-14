@@ -102,10 +102,7 @@
       background: var(--nav-bg);
       box-shadow: 0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.05);
     }
-    [data-theme="light"] .nav-logo img {
-      filter: invert(1) hue-rotate(180deg);
-      mix-blend-mode: normal;
-    }
+    [data-theme="light"] .nav-logo img { filter: none; }
     [data-theme="light"] .btn-primary {
       background: var(--accent);
       color: #fff;
@@ -179,9 +176,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo img {
-      mix-blend-mode: screen;
-    }
     .nav-logo {
       font-family: var(--font-display);
       font-size: 1.1rem;
@@ -467,12 +461,12 @@
       right: 5rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 340px;
-      height: 340px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid rgba(0,229,255,0.25);
-      box-shadow: 0 0 60px rgba(0,229,255,0.1), 0 0 0 12px rgba(0,229,255,0.04);
+      box-shadow: 0 0 40px rgba(0,229,255,0.1), 0 0 0 8px rgba(0,229,255,0.04);
       animation: fadeUp 1s 0.3s ease both;
       z-index: 1;
     }
@@ -1024,6 +1018,17 @@
     }
     .booking-confirmed p { color: var(--muted); font-size: 0.88rem; }
 
+    /* CV Download Button */
+    a[download] {
+      transition: all 0.3s ease !important;
+    }
+    a[download]:hover {
+      background: var(--accent) !important;
+      color: #000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,229,255,0.25) !important;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
@@ -1121,13 +1126,50 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- MUSIC PLAYER -->
+  <div style="position: fixed; bottom: 30px; left: 30px; z-index: 50; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <button id="musicToggle" style="background: transparent; border: none; color: var(--accent); cursor: pointer; font-size: 18px; display: flex; align-items: center; padding: 0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display: block;"><path d="M12 3v9.28c-.47-.46-1.12-.72-1.84-.72-2.49 0-4.5 2.01-4.5 4.5S7.51 21 10 21c1.78 0 3.31-1.04 4.06-2.53.05-.05.09-.11.13-.16.36.12.74.19 1.14.19 2.49 0 4.5-2.01 4.5-4.5V7h4V3h-7z"/></svg>
+    </button>
+    <audio id="bgMusic" style="display: none;">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <span style="font-size: 12px; color: var(--muted); font-weight: 500;">Ambient</span>
+  </div>
+
+  <script>
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        bgMusic.pause();
+        isPlaying = false;
+        musicToggle.style.opacity = '0.5';
+      } else {
+        bgMusic.play().catch(e => console.log('Auto-play blocked:', e));
+        isPlaying = true;
+        musicToggle.style.opacity = '1';
+      }
+    });
+
+    // Set volume to low and loop
+    bgMusic.volume = 0.3;
+    bgMusic.loop = true;
+  </script>
+
+  <!-- ABOUT with CV -->
   <section id="about">
     <div class="about-grid">
       <div class="about-left">
         <div class="section-label">About Me</div>
         <h2 class="section-title">Building at the<br>intersection of<br>code & intelligence</h2>
         <p class="section-sub">I turn complex problems into elegant software solutions.</p>
+        <a href="Akarshan_Poudel_CV.docx" download="Akarshan_Poudel_CV.docx" style="display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: rgba(0,229,255,0.1); border: 1.5px solid var(--accent); border-radius: 10px; color: var(--accent); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          Download CV
+        </a>
       </div>
       <div class="about-right">
         <p class="about-text">
